@@ -11,10 +11,18 @@ import UIKit
 class TodoListViewController: UITableViewController {
     
     var itemArray = ["Find keys", "Buy apples", "Call doctor", "Kill dragon"]
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        retrieveData()
+    }
+    
+    //MARK: załaduj dane użytkownika
+    func retrieveData(){
+        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+        itemArray = items
+        }
     }
     //MARK: wymagane funkcje
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +56,7 @@ class TodoListViewController: UITableViewController {
             // co się stanie po naciśnięciu "Add item"
             print("add btn pressed: ......  "+(textNewItem.text)!)
             self.itemArray.append(textNewItem.text!)
+            self.defaults.set(self.itemArray, forKey: "TodoListArray")
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
