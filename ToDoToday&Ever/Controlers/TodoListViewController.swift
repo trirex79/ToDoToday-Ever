@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    var itemArray = ["Find keys", "Buy apples", "Call doctor", "Kill dragon"]
+    var itemArray = [Model]()
     let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -20,9 +20,12 @@ class TodoListViewController: UITableViewController {
     
     //MARK: załaduj dane użytkownika
     func retrieveData(){
-        if let items = defaults.array(forKey: "TodoListArray") as? [String] {
+        if let items = defaults.array(forKey: "TodoListArray") as? [Model] {
         itemArray = items
         }
+//        newItem2.title = "Find cat"
+//        newItem2.done =  true
+//        itemArray.append(newItem2)
     }
     //MARK: wymagane funkcje
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,7 +33,15 @@ class TodoListViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
-        cell.textLabel?.text = itemArray[indexPath.row]
+        let item = itemArray[indexPath.row]
+        cell.textLabel?.text = item.title
+        //ternary operator
+        cell.accessoryType = item.done == true ? .checkmark : .none
+//        if itemArray[indexPath.row].done == true {
+//            cell.accessoryType = .checkmark
+//        }else{
+//            cell.accessoryType = .none
+//        }
         return cell
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -40,11 +51,10 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // zeby można było zaznaczyć więcej niż jedną, inaczej bdzie automatychnie wchodził do iddeselect przy zaznaczeniu innej komórki
         // zeby mieć tylko jedną zaznaczoną uzyj didSelectRowAt i didDeselectRowAt
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType  = .none
-        }else{
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//            tableView.cellForRow(at: indexPath)?.accessoryType  = .none
+            itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+       tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     //MARK: add button
@@ -55,7 +65,9 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add item", style: .default) { (action) in
             // co się stanie po naciśnięciu "Add item"
             print("add btn pressed: ......  "+(textNewItem.text)!)
-            self.itemArray.append(textNewItem.text!)
+            let newItem = Model()
+            newItem.title = textNewItem.text!
+            self.itemArray.append(newItem)
             self.defaults.set(self.itemArray, forKey: "TodoListArray")
             self.tableView.reloadData()
         }

@@ -9,5 +9,6 @@
 import Foundation
 
 class Model{
-    var itemDic = ["":false]
+    var title = ""
+    var done = false
 }

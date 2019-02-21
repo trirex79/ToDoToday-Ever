@@ -57,14 +57,46 @@
 			isa = PBXGroup;
 			children = (
 				AA69BA4F221CADBE00E3C7CB /* AppDelegate.swift */,
-				AA69BA51221CADBE00E3C7CB /* TodoListViewController.swift */,
-				AA69BA53221CADBE00E3C7CB /* Main.storyboard */,
-				AA69BA56221CADC100E3C7CB /* Assets.xcassets */,
-				AA69BA58221CADC100E3C7CB /* LaunchScreen.storyboard */,
+				AADD5799221F450700D35E20 /* Controlers */,
+				AADD5798221F44E800D35E20 /* View */,
+				AADD579A221F452100D35E20 /* Supporting files */,
 				AA69BA5B221CADC100E3C7CB /* Info.plist */,
-				AAB30705221E064000906F50 /* Model.swift */,
+				AADD5797221F44BF00D35E20 /* Data Model */,
 			);
 			path = "ToDoToday&Ever";
+			sourceTree = "<group>";
+		};
+		AADD5797221F44BF00D35E20 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAB30705221E064000906F50 /* Model.swift */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		AADD5798221F44E800D35E20 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA69BA53221CADBE00E3C7CB /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AADD5799221F450700D35E20 /* Controlers */ = {
+			isa = PBXGroup;
+			children = (
+				AA69BA51221CADBE00E3C7CB /* TodoListViewController.swift */,
+			);
+			path = Controlers;
+			sourceTree = "<group>";
+		};
+		AADD579A221F452100D35E20 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				AA69BA56221CADC100E3C7CB /* Assets.xcassets */,
+				AA69BA58221CADC100E3C7CB /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
