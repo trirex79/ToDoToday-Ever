@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Model{
+class Model: Encodable , Decodable{
     var title = ""
     var done = false
 }
